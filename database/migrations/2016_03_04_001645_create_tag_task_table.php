@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLanesTable extends Migration
+class CreateTagTaskTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,11 @@ class CreateLanesTable extends Migration
      */
     public function up()
     {
-        Schema::create('lanes', function (Blueprint $table) {
+        Schema::create('tag_task', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('name');
+            $table->integer('tag_id')->unsigned()->index();
+            $table->integer('task_id')->unsigned()->index();
         });
     }
 
@@ -26,6 +27,6 @@ class CreateLanesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('lanes');
+        Schema::drop('tag_task');
     }
 }
